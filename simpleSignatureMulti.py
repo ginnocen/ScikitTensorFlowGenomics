@@ -20,6 +20,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
+from sklearn.ensemble import GradientBoostingClassifier  #GBM algorithm
 
 do1D=0
 do2D=0
@@ -29,7 +30,7 @@ h = .02  # step size in the mesh
 
 datasets= ["small sample"]
 
-names = ["Nearest_Neighbors", "Linear_SVM", "RBF_SVM", "Gaussian_Process",
+names = ["GradientBoostingClassifier","Nearest_Neighbors", "Linear_SVM", "RBF_SVM", "Gaussian_Process",
          "Decision_Tree", "Random_Forest", "Neural_Net", "AdaBoost",
          "Naive_Bayes", "QDA"]
 
@@ -62,7 +63,7 @@ if(do2D == 1):
     plt.show()
  
 y = np.asarray(df.signal)
-df_selected = df.drop(['tumor', 'signal', "Signature_3_ml","exp_sig3","total_snvs","Signature_clock_c1_ml"], axis=1)
+df_selected = df.drop(['tumor', 'signal', "Signature_3_ml","exp_sig3","total_snvs"], axis=1)
 df_features = df_selected.to_dict(orient='records')
 vec = DictVectorizer()
 X = vec.fit_transform(df_features).toarray()
@@ -71,9 +72,10 @@ y_test = np.asarray(df_test.signal)
 df_selected_test = df_test.drop(['tumor', 'signal', "Signature_3_ml","exp_sig3","total_snvs"], axis=1)
 df_features_test = df_selected_test.to_dict(orient='records')
 vec_test = DictVectorizer()
-X_test = vec.fit_transform(df_features_test).toarray()
+X_test = vec_test.fit_transform(df_features_test).toarray()
 
 classifiers = [
+    GradientBoostingClassifier(learning_rate=0.01, n_estimators=2500, max_depth=1),
     KNeighborsClassifier(3),
     SVC(kernel="linear", C=0.025, probability=True),
     SVC(gamma=2, C=1,probability=True),
@@ -130,8 +132,6 @@ for name, clf in zip(names, classifiers):
     df_test_pred.to_csv(nameoutput)
     i += 1
     
-plt.show()
-
 
 
 
