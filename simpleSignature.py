@@ -127,7 +127,7 @@ for name, clf in zip(names, classifiers):
     df_test_pred=df_test
     df_test_pred = df_test_pred.assign(estimated_decision=pd.Series(y_test_prediction))
     df_test_pred = df_test_pred.assign(estimated_probability=pd.Series(y_test_probability))
-    nameoutput="cvspredictions"+names[i-1]+".csv"
+    nameoutput="predictions/cvspredictions"+names[i-1]+".csv"
     df_test_pred.to_csv(nameoutput)
     
     # Plot the decision boundary. For that, we will assign a color to each
