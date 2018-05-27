@@ -107,9 +107,11 @@ ax2.set_ylim(yy.min(), yy.max())
 ax2.set_xlabel("Signature_3_c")
 ax2.set_ylabel("Signature_3_ml")
 
+
+figure = plt.figure(figsize=(10,3))
 i=1
 for name, clf in zip(names, classifiers):
-    ax = plt.subplot(len(datasets), len(classifiers) + 1, i)
+    ax = plt.subplot(1, len(classifiers) + 1, i)
     clf.fit(X_train, y_train)
     score = clf.score(X_test, y_test)
 
@@ -135,7 +137,6 @@ for name, clf in zip(names, classifiers):
     ax.set_yticks(())
     ax.text(xx.max() - .3, yy.min() + .3, ('%.2f' % score).lstrip('0'), size=15, horizontalalignment='right')
     i += 1
-
 plt.show()
 
 
