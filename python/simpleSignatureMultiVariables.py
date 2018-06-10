@@ -24,8 +24,8 @@ from sklearn.ensemble import GradientBoostingClassifier  #GBM algorithm
 
 doplot1D=0
 doplot2D=0
-doMLMultivariables=0
-doML2variables=1
+doMLMultivariables=1
+doML2variables=0
 
 h = .02  # step size in the mesh
 
