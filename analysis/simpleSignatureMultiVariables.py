@@ -49,8 +49,8 @@ classifiers = [
         QuadraticDiscriminantAnalysis()]
 
 
-input_file = "msk_tune_for_gian2.csv"
-input_file_test = "msk_test.csv"
+input_file = "../samples/msk_simulations/msk_train.csv"
+input_file_test = "../samples/msk_simulations/msk_test.csv"
 df = pd.read_csv(input_file, header = 0)
 df_test= pd.read_csv(input_file_test, header = 0)
 
